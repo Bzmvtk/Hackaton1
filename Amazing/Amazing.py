@@ -41,7 +41,6 @@ def get_data(html):
         article_json[n] = data
     return article_json
 
-
 @bot.message_handler(commands=['start'])
 def start(message):
     chat_id = message.chat.id
@@ -53,18 +52,14 @@ def send_text(message):
     if message.text.lower().replace('/', '').isnumeric():
         numericID = int(message.text.lower().replace('/', ''))
         bot.send_message(message.chat.id, 'You can see Description of this news and Photo' +'\n' + '/image' + str(numericID) +'\n' + '/title' + str(numericID) + '\n' + '/quit')
-
     if ('/image' in message.text.lower()):
         numericID = int(message.text.lower().replace('/image',''))
         bot.send_message(message.chat.id, article_json[numericID]['image'])
-
     elif ('/title' in message.text.lower()):
         numericID = int(message.text.lower().replace('/title',''))
         bot.send_message(message.chat.id, article_json[numericID]['title'])
-
     elif message.text.lower() == '/quit':
         bot.send_message(message.chat.id, 'Good bye!')
-
     else:
         print('end')    
 
